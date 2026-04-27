@@ -1,36 +1,25 @@
 import { on, showUI } from '@create-figma-plugin/utilities'
 
-// UI → 메인 스레드로 오는 이벤트 핸들러
-function handleGetSelectedText() {
-  const textNodes = figma.currentPage.selection.filter(
-    (node): node is TextNode => node.type === 'TEXT'
-  )
+// ─── 이벤트 핸들러 ────────────────────────────────────────────────────────────
+// UI 스레드에서 emit()으로 보낸 이벤트를 여기서 on()으로 수신합니다.
+// 실제 플러그인 로직을 아래 핸들러에 구현하세요.
 
-  const texts = textNodes.map((node) => ({
-    id: node.id,
-    text: node.characters,
-  }))
-
-  figma.ui.postMessage({ type: 'SELECTED_TEXT', texts })
+function handleRun() {
+  // TODO: 플러그인 핵심 로직 구현
+  // 예시: 현재 선택된 노드 수를 UI로 전달
+  const count = figma.currentPage.selection.length
+  figma.ui.postMessage({ type: 'RUN_RESULT', count })
 }
 
-async function handleApplyCorrection({
-  nodeId,
-  correctedText,
-}: {
-  nodeId: string
-  correctedText: string
-}) {
-  const node = figma.getNodeById(nodeId) as TextNode | null
-  if (!node || node.type !== 'TEXT') return
-
-  await figma.loadFontAsync(node.fontName as FontName)
-  node.characters = correctedText
+function handleClose() {
+  figma.closePlugin()
 }
 
+// ─── 플러그인 진입점 ───────────────────────────────────────────────────────────
 export default function () {
-  on('GET_SELECTED_TEXT', handleGetSelectedText)
-  on('APPLY_CORRECTION', handleApplyCorrection)
+  on('RUN', handleRun)
+  on('CLOSE', handleClose)
 
-  showUI({ height: 480, width: 360, title: '한스펠 맞춤법 검사' })
+  // TODO: 플러그인에 맞게 width / height / title 수정
+  showUI({ height: 320, width: 300, title: '플러그인 이름' })
 }
