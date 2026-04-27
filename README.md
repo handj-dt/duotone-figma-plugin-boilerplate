@@ -3,6 +3,8 @@
 듀오톤 사내 표준 피그마 플러그인 보일러플레이트입니다.  
 새 플러그인을 시작할 때 이 저장소를 복사해 사용하세요.
 
+260426 한대진 ver 1.0
+
 ---
 
 ## 기술 스택
@@ -22,8 +24,9 @@
 ### 1. 저장소 복제
 
 ```bash
-npx degit duotone/duotone-figma-plugin-boilerplate my-plugin-name
-cd my-plugin-name
+npx degit handj-dt/duotone-figma-plugin-boilerplate 프로젝트명
+
+cd 프로젝트명
 npm install
 ```
 
