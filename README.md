@@ -24,10 +24,15 @@
 ### 1. 저장소 복제
 
 ```bash
-npx degit handj-dt/duotone-figma-plugin-boilerplate 프로젝트명
+1. npx degit handj-dt/duotone-figma-plugin-boilerplate 프로젝트명
+--> 뒤쪽 프로젝트명은 실제 사용될 폴더 이름을 넣습니다.
 
-cd 프로젝트명
-npm install
+2. cd 프로젝트명
+--> 해당 프로젝트 폴더로 이동합니다.
+
+3. npm install
+--> 관련 패키지를 자동 설치 합니다. 
+
 ```
 
 ### 2. 필수 수정 항목 (체크리스트)
