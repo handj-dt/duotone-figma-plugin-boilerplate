@@ -3,7 +3,7 @@
 듀오톤 사내 표준 피그마 플러그인 보일러플레이트입니다.  
 새 플러그인을 시작할 때 이 저장소를 복사해 사용하세요.
 
-260426 한대진 ver 1.0
+260508 한대진 ver 1.0.1
 
 ---
 
@@ -72,11 +72,12 @@ UI 스레드                          메인 스레드
 ─────────                          ──────────
 emit('RUN')              ────────▶ on('RUN', handler)
                                     ↓ Figma API 처리
-setResult(count)  ◀──────────────  figma.ui.postMessage(...)
+on('RUN_RESULT', h)      ◀──────── emit('RUN_RESULT', data)
 ```
 
 `@create-figma-plugin/utilities`의 `emit` / `on` 을 사용합니다.  
-메인 → UI 방향은 `figma.ui.postMessage()` + UI에서 `on()`으로 수신합니다.
+메인↔UI **양방향 모두** `emit('NAME', data)` / `on('NAME', handler)` 짝으로 통신합니다.  
+`figma.ui.postMessage(...)` 를 직접 호출하면 UI 쪽 `on()` 이 받지 못합니다(utilities는 배열 형식 메시지만 인식).
 
 ---
 
@@ -114,7 +115,7 @@ npm run format   # Prettier 자동 포맷
 ## 코딩 컨벤션
 
 - 이벤트 이름은 `SCREAMING_SNAKE_CASE` 사용 (예: `'RUN'`, `'APPLY_CHANGE'`)
-- 메인 스레드에서 UI로 데이터를 보낼 때는 항상 `type` 필드를 포함한 객체 사용
+- 메인↔UI 메시지는 양방향 모두 `emit('NAME', data)` / `on('NAME', handler)` 짝으로 통신 (`figma.ui.postMessage` 직접 호출 금지)
 - `async` 핸들러에서 폰트 접근 시 반드시 `figma.loadFontAsync()` 선행 호출
 
 ---

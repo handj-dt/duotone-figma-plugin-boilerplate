@@ -1,4 +1,4 @@
-import { on, showUI } from '@create-figma-plugin/utilities'
+import { emit, on, showUI } from '@create-figma-plugin/utilities'
 
 // ─── 이벤트 핸들러 ────────────────────────────────────────────────────────────
 // UI 스레드에서 emit()으로 보낸 이벤트를 여기서 on()으로 수신합니다.
@@ -8,7 +8,7 @@ function handleRun() {
   // TODO: 플러그인 핵심 로직 구현
   // 예시: 현재 선택된 노드 수를 UI로 전달
   const count = figma.currentPage.selection.length
-  figma.ui.postMessage({ type: 'RUN_RESULT', count })
+  emit('RUN_RESULT', { count })
 }
 
 function handleClose() {
