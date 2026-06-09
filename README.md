@@ -21,12 +21,20 @@
 
 ## 새 플러그인 시작하기
 
-### 1. 저장소 복제
+### 1. degit 글로벌 설치 (최초 1회만)
+
+```bash
+npm i -g degit
+```
+
+--> 매번 `npx`로 받는 것보다 빠릅니다. 한 번만 설치해 두면 이후엔 바로 `degit` 명령을 사용할 수 있습니다.
+
+### 2. 저장소 복제
 
 현재 프로젝트 폴더 안에서 아래 명령을 실행하면, 해당 폴더에 보일러플레이트가 설치됩니다.
 
 ```bash
-1. npx degit handj-dt/duotone-figma-plugin-boilerplate .
+1. degit handj-dt/duotone-figma-plugin-boilerplate .
 --> 끝의 마침표(.)는 "현재 폴더에 설치"를 의미합니다.
     빈 폴더가 아니어도 동작하지만, 동일한 파일이 있으면 덮어쓰기 됩니다.
 
