@@ -23,15 +23,15 @@
 
 ### 1. 저장소 복제
 
+현재 프로젝트 폴더 안에서 아래 명령을 실행하면, 해당 폴더에 보일러플레이트가 설치됩니다.
+
 ```bash
-1. npx degit handj-dt/duotone-figma-plugin-boilerplate 프로젝트명
---> 뒤쪽 프로젝트명은 실제 사용될 폴더 이름을 넣습니다.
+1. npx degit handj-dt/duotone-figma-plugin-boilerplate .
+--> 끝의 마침표(.)는 "현재 폴더에 설치"를 의미합니다.
+    빈 폴더가 아니어도 동작하지만, 동일한 파일이 있으면 덮어쓰기 됩니다.
 
-2. cd 프로젝트명
---> 해당 프로젝트 폴더로 이동합니다.
-
-3. npm install
---> 관련 패키지를 자동 설치 합니다. 
+2. npm install
+--> 관련 패키지를 자동 설치 합니다.
 
 ```
 
